@@ -20,7 +20,14 @@ const Board: Component = () => {
       <For each={taskGroups()}>
         {(taskGroup) => <TaskGroup title={taskGroup.title} />}
       </For>
-      <button class={styles.addTaskGroupButton}>add task group</button>
+      <button
+        class={styles.addTaskGroupButton}
+        onClick={() =>
+          setTaskGroups([...taskGroups(), { id: 2, title: 'New Task Group' }])
+        }
+      >
+        add task group
+      </button>
     </div>
   )
 }
