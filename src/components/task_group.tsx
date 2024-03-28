@@ -17,7 +17,14 @@ const TaskGroup: Component<{
     <div class={styles.container}>
       <h2 class={styles.title}>{props.title}</h2>
       <For each={tasks()}>{(task) => <Task name={task.name} />}</For>
-      <button class={styles.addTaskButton}>add task</button>
+      <button
+        class={styles.addTaskButton}
+        onClick={() =>
+          setTasks([...tasks(), { id: '2', name: 'Do something else' }])
+        }
+      >
+        add task
+      </button>
     </div>
   )
 }
