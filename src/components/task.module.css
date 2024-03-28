@@ -1,0 +1,11 @@
+.container {
+  background-color: #2b2d2b;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  width: 80%;
+  max-width: 80%;
+}
+
+.name {
+  text-align: left;
+}

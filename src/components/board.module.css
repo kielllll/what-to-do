@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  padding: 4rem;
+  gap: 1rem;
+  height: 85%;
+}
+
+.addTaskGroupButton {
+  width: 120px;
+  height: 40px;
+}

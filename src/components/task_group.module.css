@@ -1,0 +1,22 @@
+.container {
+  background-color: #353935;
+  color: #fff;
+  padding: 1rem;
+  padding-top: unset;
+  width: 300px;
+  border-radius: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.title {
+  text-align: left;
+  width: 100%;
+}
+
+.addTaskButton {
+  width: 120px;
+  height: 40px;
+}
