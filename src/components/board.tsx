@@ -1,33 +1,50 @@
-import { createSignal, type Component, For } from 'solid-js'
+import { createSignal, type Component, For, createUniqueId } from 'solid-js'
 import TaskGroup from './task_group'
 
 import styles from './board.module.css'
+import {
+  DragDropProvider,
+  DragDropSensors,
+  DragEventHandler,
+  DragOverlay,
+  SortableProvider,
+} from '@thisbeyond/solid-dnd'
 
 const Board: Component = () => {
   const [taskGroups, setTaskGroups] = createSignal([
     {
-      id: 1,
+      id: createUniqueId(),
       title: 'To Do',
     },
     {
-      id: 1,
+      id: createUniqueId(),
       title: 'In Progress',
     },
   ])
 
   return (
     <div class={styles.container}>
-      <For each={taskGroups()}>
-        {(taskGroup) => <TaskGroup title={taskGroup.title} />}
-      </For>
-      <button
-        class={styles.addTaskGroupButton}
-        onClick={() =>
-          setTaskGroups([...taskGroups(), { id: 2, title: 'New Task Group' }])
-        }
-      >
-        add task group
-      </button>
+      <DragDropProvider>
+        <DragDropSensors />
+        <SortableProvider ids={taskGroups().map((taskGroup) => taskGroup.id)}>
+          <For each={taskGroups()}>
+            {(taskGroup) => (
+              <TaskGroup id={taskGroup.id} title={taskGroup.title} />
+            )}
+          </For>
+        </SortableProvider>
+        <button
+          class={styles.addTaskGroupButton}
+          onClick={() =>
+            setTaskGroups([
+              ...taskGroups(),
+              { id: createUniqueId(), title: 'New Task Group' },
+            ])
+          }
+        >
+          add task group
+        </button>
+      </DragDropProvider>
     </div>
   )
 }
